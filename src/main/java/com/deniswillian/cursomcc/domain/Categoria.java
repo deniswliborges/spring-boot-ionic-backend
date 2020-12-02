@@ -2,15 +2,23 @@ package com.deniswillian.cursomcc.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
 // 1- Criando Endpoint("Tabela")   7- Implementando o Serializable : Para ser gravados em arquivos
+@Entity
 public class Categoria implements Serializable{
 	
 		//8- Coloque o mouse em cima da linha 6 e selecione opção | Add default serial version ID 
-		private static final long serialVersionUID = 1L;
-	
-		// 2- Criando Atributos do Endpoint(tabela)
-	private Integer id;
-	private String nome;
+		private static final long serialVersionUID = 1L;		
+		
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Integer id;// 2- Criando Atributos do Endpoint(tabela)
+		private String nome;
 	
 	// 3- Criando os CONSTRUTORES. Obs: Não incluir coleções no construtor com parâmetros
 	public Categoria() {
