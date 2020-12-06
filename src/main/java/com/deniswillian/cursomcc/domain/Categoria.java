@@ -1,11 +1,14 @@
 package com.deniswillian.cursomcc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 
 // 1- Criando Endpoint("Tabela")   7- Implementando o Serializable : Para ser gravados em arquivos
@@ -19,12 +22,17 @@ public class Categoria implements Serializable{
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer id;// 2- Criando Atributos do Endpoint(tabela)
 		private String nome;
+		
+		//11 - Associação(Cardinalidade) entre Endpoints(Tabelas) de Muitos p/ muitos  de CATEGORIA
+		// e também criar o GET e SET do endpoint produto dentro da classe categoria
+		@ManyToMany(mappedBy="categorias")
+		private List<Produto>produtos = new ArrayList<>();
 	
 	// 3- Criando os CONSTRUTORES. Obs: Não incluir coleções no construtor com parâmetros
 	public Categoria() {
 	}
 
-	// 4- Criando construtores com ATRIBUTOS com botão direito clicar em 1-Source, 2-Constructor using Fields
+	// 4- Criando parâmetros dos construtores(ATRIBUTOS) com botão direito clicar em 1-Source, 2-Constructor using Fields
 	public Categoria(Integer id, String nome) {
 		super();
 		this.id = id;
@@ -46,6 +54,14 @@ public class Categoria implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	//6- Gerar o HASCODE e EQUALs : Comparar/relacionar os objetos ou tabelas  por valor, ou seja, pela Chave Primaria (PK). Obs: Escolha o ID para relacionar as tabelas
@@ -73,8 +89,6 @@ public class Categoria implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
+		
 }
