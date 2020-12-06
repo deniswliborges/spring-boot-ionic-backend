@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 // 1- Criando Endpoint("Tabela")   7- Implementando o Serializable : Para ser gravados em arquivos
 @Entity
@@ -25,6 +27,7 @@ public class Categoria implements Serializable{
 		
 		//11 - Associação(Cardinalidade) entre Endpoints(Tabelas) de Muitos p/ muitos  de CATEGORIA
 		// e também criar o GET e SET do endpoint produto dentro da classe categoria
+		@JsonManagedReference
 		@ManyToMany(mappedBy="categorias")
 		private List<Produto>produtos = new ArrayList<>();
 	
