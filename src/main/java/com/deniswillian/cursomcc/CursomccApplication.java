@@ -81,8 +81,6 @@ public class CursomccApplication implements CommandLineRunner{
 		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
 		
 	
-		// ESTA DANDO PROBLEMA NA ASSOCIAÇÃO ABAIXO, ACREDITO QUE A ORDEM DE SALVAR NO BANCO 
-		 
 		clienteRepository.saveAll(Arrays.asList(cli1));
 		enderecoRepository.saveAll(Arrays.asList(e1,e2));
 		
