@@ -11,6 +11,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.deniswillian.cursomcc.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity //Criando Tabela PAGAMENTO no banco de Dados
 @Inheritance(strategy=InheritanceType.JOINED) // Comando de Herança para as SubClasses PagamentoComBoleto e PagamentoComCartao com poucos atributos
@@ -22,6 +23,7 @@ public abstract class Pagamento implements Serializable{
 	private Integer id;
 	private Integer estado;
 	
+	@JsonBackReference
 	//Cardinalidade (1,1) entre PAGAMENTO E PEDIDO.
 	@OneToOne//(1,1)
 	@JoinColumn(name="pedido_id")// A chave primaria da tabela PAGAMENTO tem que ser a mesma da tabela PEDIDO

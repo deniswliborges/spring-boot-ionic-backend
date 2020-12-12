@@ -3,7 +3,6 @@ package com.deniswillian.cursomcc.domain;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
