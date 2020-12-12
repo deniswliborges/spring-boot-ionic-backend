@@ -9,7 +9,7 @@ import com.deniswillian.cursomcc.domain.Cliente;
 import com.deniswillian.cursomcc.repositories.ClienteRepository;
 import com.deniswillian.cursomcc.services.exceptions.ObjectNotFounfException;
 
-import javassist.tools.rmi.ObjectNotFoundException;
+//import javassist.tools.rmi.ObjectNotFoundException;
 
 @Service
 public class ClienteService {

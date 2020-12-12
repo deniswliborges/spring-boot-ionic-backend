@@ -3,14 +3,12 @@ package com.deniswillian.cursomcc.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 // 1- Criando Endpoint("Tabela")   7- Implementando o Serializable : Para ser gravados em arquivos
@@ -27,7 +25,7 @@ public class Categoria implements Serializable{
 		
 		//11 - Associação(Cardinalidade) entre Endpoints(Tabelas) de Muitos p/ muitos  de CATEGORIA
 		// e também criar o GET e SET do endpoint produto dentro da classe categoria
-		@JsonManagedReference
+		
 		@ManyToMany(mappedBy="categorias")
 		private List<Produto>produtos = new ArrayList<>();
 	

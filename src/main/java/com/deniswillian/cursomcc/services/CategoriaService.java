@@ -9,7 +9,7 @@ import com.deniswillian.cursomcc.domain.Categoria;
 import com.deniswillian.cursomcc.repositories.CategoriaRepository;
 import com.deniswillian.cursomcc.services.exceptions.ObjectNotFounfException;
 
-import javassist.tools.rmi.ObjectNotFoundException;
+//import javassist.tools.rmi.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
