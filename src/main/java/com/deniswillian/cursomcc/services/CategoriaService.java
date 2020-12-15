@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.deniswillian.cursomcc.domain.Categoria;
@@ -48,6 +51,12 @@ public void delete(Integer id) {
 
 public List<Categoria>findAll(){
 return repo.findAll();	
+}
+
+// ERRO PORQUE SÓ BUSCA O PARÂMETRO PAGE, O RESTANTES DOS PARÂMETROS NÃO APARECEM NO POSTMAN - refazer AULA 38
+public Page<Categoria> findPage(Integer page,Integer linesPerPage, String orderBy,String direction){
+	PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
+	return repo.findAll(pageRequest);
 }
 
 }
