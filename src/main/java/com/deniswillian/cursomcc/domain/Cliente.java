@@ -19,7 +19,7 @@ import com.deniswillian.cursomcc.domain.enums.TipoCliente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Cliente implements Serializable{	
+public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,22 +29,20 @@ public class Cliente implements Serializable{
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-	
-	
-	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
-	
+
 	// Como a "Tabela" TELEFONE só tem um atributo, ou seja, String numero,
-	// cria apenas este Setlist, pois o set não fará o número ser duplicado. 
+	// cria apenas este Setlist, pois o set não fará o número ser duplicado.
 	@ElementCollection // Comando para apontar a tabela comum, ou seja, somente com 1 atributo
-	@CollectionTable(name="TELEFONE") // Comando para criar a Endpoint(Tabela) TELEFONE
+	@CollectionTable(name = "TELEFONE") // Comando para criar a Endpoint(Tabela) TELEFONE
 	private Set<String> telefones = new HashSet<>();
-	
+
 	@JsonIgnore
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
-	
-	
+
 	public Cliente() {
 	}
 
@@ -54,7 +52,7 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = (tipo==null) ? null : tipo.getCod();
+		this.tipo = (tipo == null) ? null : tipo.getCod();
 	}
 
 	public Integer getId() {
@@ -112,6 +110,7 @@ public class Cliente implements Serializable{
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
+
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
@@ -119,7 +118,7 @@ public class Cliente implements Serializable{
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -145,8 +144,4 @@ public class Cliente implements Serializable{
 		return true;
 	}
 
-	
-	
-	
-	
 }
