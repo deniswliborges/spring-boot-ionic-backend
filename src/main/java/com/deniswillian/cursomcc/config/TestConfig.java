@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.deniswillian.cursomcc.services.DBService;
 import com.deniswillian.cursomcc.services.EmailService;
-import com.deniswillian.cursomcc.services.MockEmailService;
+import com.deniswillian.cursomcc.services.SmtpEmailService;
 
 @Configuration
 @Profile("test")
@@ -26,6 +26,6 @@ public class TestConfig {
 
 	@Bean
 	public EmailService emailService() {
-		return new MockEmailService();
+		return new SmtpEmailService();
 	}
 }
