@@ -39,7 +39,7 @@ public class ClienteService {
 
 	@Autowired
 	private S3Service s3Service;
-	
+
 	@Autowired
 	private ImageService imageService;
 
@@ -48,7 +48,7 @@ public class ClienteService {
 
 	@Value("${img.profile.size}")
 	private Integer size;
-	
+
 	@Autowired
 	private ClienteRepository repo;
 
@@ -94,6 +94,21 @@ public class ClienteService {
 		return repo.findAll();
 	}
 
+	public Cliente findByEmail(String email) {
+		
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+
+		Cliente obj = repo.findByEmail(email);
+		if (obj == null) {
+			throw new ObjectNotFounfException(
+					"Objeto não encontrado! Id: " + user.getId() + ", Tipo: " + Cliente.class.getName());
+		}
+		return obj;
+	}
+
 	// ERRO PORQUE SÓ BUSCA O PARÂMETRO PAGE, O RESTANTES DOS PARÂMETROS NÃO
 	// APARECEM NO POSTMAN - refazer AULA 38
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
@@ -128,7 +143,7 @@ public class ClienteService {
 	}
 
 	public URI uploadProfilePicture(MultipartFile multipartFile) {
-		
+
 		UserSS user = UserService.authenticated();
 		if (user == null) {
 			throw new AuthorizationException("Acesso negado");
